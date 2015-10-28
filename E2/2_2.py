@@ -26,6 +26,7 @@ pl.savefig('Classification performance for various w-angles');
 mplt.clf();
 #best performing vector
 W = w[:,np.argmax(p)]
+print 'best w (separate)', W
 
 #c
 thetas = np.linspace(-3, 3, 1000).T
@@ -35,6 +36,7 @@ o = np.sign(o + 1).T;
 p = np.array([np.mean(out==y) for out in o]);
 #best performing theta
 theta = thetas[np.argmax(p)];
+print 'Best theta (separate)', theta
 pind = max(p);
 
 def f(x, we, thet):

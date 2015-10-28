@@ -1,7 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{amsmath}
 \usepackage{graphicx}
-
+\usepackage{verbatim}
 \begin{document}
 \section*{2.1}
 \subsection*{a}
@@ -31,6 +31,35 @@ region and 8 or -8 if the point is in the middle. This goes analogously for the 
 The first is deterministic and the second has a noise parameter and can return different states for set parameters and a given
 input.
 \section*{2.2}
+The code for this assignment can be found in the file \verb|2_2.py|
+\subsection*{a}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{Input data with classification.png}
+  \caption{Input data, x[1] against x[0] colored according to y value}
+\end{figure}
+\subsection*{b}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{Classification performance for various w-angles.png}
+  \caption{Classification performance given by $sign(w \cdot x)$ for varying angles determining w}
+\end{figure}
+\newpage
+\subsection*{c}
+The weight vector giving us the best performance is $w=(0.93969262,  0.34202014)$ if we optimize it without respect to $\theta$.
+\subsection*{d}
+\begin{figure}[h]
+  \begin{centering}
+  \includegraphics[width=\textwidth]{Classification performance with w and theta optimized separately.png}
+  \caption{Classification performance with $w$ and $theta$ optimized separately}
+  \end{centering}
+The weight vector $w$ is colored pink in the figure, and it is perpendiculair to the line along which a lot of x are classified. $w*x$ gives us a measure of how far away our points, $x$ are from this line.
+If we optimize $w$ and $\theta$ one after another we get a  $p = 0.805$  classification rate and an optimal $\theta = 0.135135135135$.
+\end{figure}
+\newpage
+\subsection*{e}
+If we optimize w and theta one after another we get a  $p = 0.915$ classification rate with optimal parameters $w = (0.64278761,  0.76604444)$ and $\theta = 0.339339339339$
+\newpage
 \section*{2.3}
 \subsection*{a}
 A MLP could decide between a horizontal and a vertical edge, whereas a perceptionist neuron would either be able to differ between
@@ -42,6 +71,12 @@ vertical edge or no vertical edge OR horizontal edge or no horizontal edge.
 \caption{functions computed with normally distributed $a_i$ with a standard deviation of 2}
 \end{figure}
 \newpage
+\subsection*{c}
+\begin{figure}[h]
+\centering
+ \includegraphics[width=\textwidth]{./2_3_std=2.png}
+\caption{functions computed with normally distributed $a_i$ with a standard deviation of 2}
+\end{figure}
 \subsection*{c + bonus}
 \begin{figure}[h]
 \centering
