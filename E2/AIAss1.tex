@@ -3,9 +3,13 @@
 \usepackage{graphicx}
 \usepackage{verbatim}
 \begin{document}
+\noindent
+Malte Siemers\\
+Martin Lundfall\\
+Henri Bunting\\
 \section*{2.1}
 \subsection*{a}
-A nonlinear transfer function gives the neural network a universal property: Given enough layers and neurons, the network can model any function within a certain accuracy. In a network with a linear transfer function we can only compute a linear function. A network with a linear transfer function of $n$ layers will always be equivalent to a network with only one layer: linear functions can always be concatinated.\\
+A nonlinear transfer function gives the neural network a universal property: Given enough layers and neurons, the network can model any function within a certain accuracy. In a network with a linear transfer function we can only compute a linear function. A network with a linear transfer function of $n$ layers will always be equivalent to a network with only one layer: linear functions can always be concatenated.\\
 Whenever the function that we are trying to model isn't a linear function, it is useful to use a nonlinear transfer function.
 Examples include image classification or speech recognition.
 \subsection*{b}
@@ -17,7 +21,16 @@ Consider a simple neural network with two input neurons that can both either be 
   w_1 + w_2 > 0\\
 \end{align*}
 which is impossible. We can easily however create the network with a bias, if we have the weights $w = (1, 1)$ and the bias
-$\theta = \frac{3}{2}$. Then $sgn(w^Tx - \theta)$ would give us AND.
+$\theta = \frac{3}{2}$. Then $sgn(w^Tx - \theta)$ would give us AND.\\
+\begin{tabular}{ l | l | l | l | l | l | l | l | l }
+$w_0 $ & &   &   &   &   &  & 1.5 \\
+$w_1 $ & & 0 & 1 & 0 & 1 &  & 1  \\
+$w_2 $ & & 0 & 0 & 1 & 1 &  & 1  \\ \hline
+0 0  & - & - & - & - & - &  & -  \\
+0 1  & - & - & - & + & + &  & -  \\
+1 0  & - & - & + & - & + &  & -  \\
+1 1  & + & - & + & + & + &  & +\\ \hline
+\end{tabular} \\
 \subsection*{c}
 Point and edge filters are for example a connectionist neuron which gets values of a scalar field as input, that
 represent the color of each pixel or the color gradient or even a higher derivative and has weights in the following form:
@@ -34,31 +47,32 @@ input.
 The code for this assignment can be found in the file \verb|2_2.py|
 \subsection*{a}
 \begin{figure}[h]
-  \centering
-  \includegraphics[width=\textwidth]{Input data with classification.png}
-  \caption{Input data, x[1] against x[0] colored according to y value}
+\centering
+ \includegraphics[width=0.8\textwidth]{./2_2_a.png}
+\caption{Plot where Y=1 (blue) and Y=0 (gold).}
 \end{figure}
+\newpage
 \subsection*{b}
 \begin{figure}[h]
   \centering
-  \includegraphics[width=\textwidth]{Classification performance for various w-angles.png}
+  \includegraphics[width=\textwidth]{Classification_performance_for_alpha.png}
   \caption{Classification performance given by $sign(w \cdot x)$ for varying angles determining w}
 \end{figure}
-\newpage
 \subsection*{c}
-The weight vector giving us the best performance is $w=(0.93969262,  0.34202014)$ if we optimize it without respect to $\theta$.
+The weight vector giving us the best performance is $w = (0.93969262,  0.34202014)$ if we optimize it without respect to $\theta$.
+\newpage
 \subsection*{d}
 \begin{figure}[h]
   \begin{centering}
-  \includegraphics[width=\textwidth]{Classification performance with w and theta optimized separately.png}
+  \includegraphics[width=\textwidth]{separate.png}
   \caption{Classification performance with $w$ and $theta$ optimized separately}
   \end{centering}
 The weight vector $w$ is colored pink in the figure, and it is perpendiculair to the line along which a lot of x are classified. $w*x$ gives us a measure of how far away our points, $x$ are from this line.
-If we optimize $w$ and $\theta$ one after another we get a  $p = 0.805$  classification rate and an optimal $\theta = 0.135135135135$.
+If we optimize $w$ and $\theta$ one after another we get a  $p = 0.805$  classification rate and an optimal $\theta = 0.135135135135$ and $w =  (0.93969262,  0.34202014)$
 \end{figure}
 \newpage
 \subsection*{e}
-If we optimize w and theta one after another we get a  $p = 0.915$ classification rate with optimal parameters $w = (0.64278761,  0.76604444)$ and $\theta = 0.339339339339$
+If we optimize w and theta simultaneously we get a  $p = 0.915$ classification rate with optimal parameters $w = (0.64278761,  0.76604444)$ and $\theta = 0.339339339339$
 \newpage
 \section*{2.3}
 \subsection*{a}
