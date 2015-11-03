@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.6.14)  28 OCT 2015 14:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.6.14)  29 OCT 2015 01:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -195,111 +195,90 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Underfull \hbox (badness 10000) in paragraph at lines 6--10
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 22--34
+
+ []
+
 <./point_edge.png, id=1, 259.86447pt x 93.02841pt>
 File: ./point_edge.png Graphic file (type png)
  <use ./point_edge.png>
-Package pdftex.def Info: ./point_edge.png used on input line 26.
+Package pdftex.def Info: ./point_edge.png used on input line 39.
 (pdftex.def)             Requested size: 143.9978pt x 51.54904pt.
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./point_edge.png>]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<./2_2_a.png, id=14, 502.2765pt x 381.5856pt>
+File: ./2_2_a.png Graphic file (type png)
+ <use ./2_2_a.png>
+Package pdftex.def Info: ./2_2_a.png used on input line 51.
+(pdftex.def)             Requested size: 288.0011pt x 218.80446pt.
+ [2 <./point_edge.png> <./2_2_a.png>]
+<Classification_performance_for_alpha.png, id=21, 578.16pt x 433.62pt>
+File: Classification_performance_for_alpha.png Graphic file (type png)
 
-LaTeX Warning: File `Input data with classification.png' not found on input lin
-e 38.
-
-<Input data with classification.png, id=15, 502.2765pt x 381.5856pt>
-File: Input data with classification.png Graphic file (type png)
-
-<use Input data with classification.png>
-Package pdftex.def Info: Input data with classification.png used on input line 
-38.
-(pdftex.def)             Requested size: 360.0pt x 273.50703pt.
-
-
-LaTeX Warning: File `Classification performance for various w-angles.png' not f
-ound on input line 44.
-
-
-<Classification performance for various w-angles.png, id=16, 578.16pt x 433.62p
-t>
-File: Classification performance for various w-angles.png Graphic file (type pn
-g)
- <use Classification performance for various w-angles.png>
-Package pdftex.def Info: Classification performance for various w-angles.png us
-ed on input line 44.
+<use Classification_performance_for_alpha.png>
+Package pdftex.def Info: Classification_performance_for_alpha.png used on input
+ line 58.
 (pdftex.def)             Requested size: 360.0pt x 269.99951pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./Input data with classification.png>]
-Overfull \hbox (22.533pt too wide) in paragraph at lines 49--50
+Overfull \hbox (22.533pt too wide) in paragraph at lines 62--63
 \OT1/cmr/m/n/10.95 The weight vec-tor giv-ing us the best per-for-mance is $\OM
 L/cmm/m/it/10.95 w \OT1/cmr/m/n/10.95 = (0\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.
 95 93969262\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :\OT1/
 cmr/m/n/10.95 34202014)$
  []
 
-
-LaTeX Warning: File `Classification performance with w and theta optimized sepa
-rately.png' not found on input line 53.
-
-
-<Classification performance with w and theta optimized separately.png, id=22, 5
-78.16pt x 433.62pt>
-File: Classification performance with w and theta optimized separately.png Grap
-hic file (type png)
-
-<use Classification performance with w and theta optimized separately.png>
-Package pdftex.def Info: Classification performance with w and theta optimized 
-separately.png used on input line 53.
+[3 <./Classification_performance_for_alpha.png>]
+<separate.png, id=26, 578.16pt x 433.62pt>
+File: separate.png Graphic file (type png)
+ <use separate.png>
+Package pdftex.def Info: separate.png used on input line 67.
 (pdftex.def)             Requested size: 360.0pt x 269.99951pt.
+ [4 <./separate.png>] [5] <./2_3_std=2.png, id=34, 490.7133pt x 384.4764pt>
+File: ./2_3_std=2.png Graphic file (type png)
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3 <./Classification performance for various w-angles.png>] [4 <./Classificatio
-n performance with w and theta optimized separately.png>]
-<./2_3_std=2.png, id=31, 490.7133pt x 384.4764pt>
+<use ./2_3_std=2.png>
+Package pdftex.def Info: ./2_3_std=2.png used on input line 84.
+(pdftex.def)             Requested size: 360.0pt x 282.07343pt.
+ [6 <./2_3_std=2.png>]
 File: ./2_3_std=2.png Graphic file (type png)
  <use ./2_3_std=2.png>
-Package pdftex.def Info: ./2_3_std=2.png used on input line 70.
+Package pdftex.def Info: ./2_3_std=2.png used on input line 91.
 (pdftex.def)             Requested size: 360.0pt x 282.07343pt.
 
-[5 <./2_3_std=2.png>]
-File: ./2_3_std=2.png Graphic file (type png)
- <use ./2_3_std=2.png>
-Package pdftex.def Info: ./2_3_std=2.png used on input line 77.
-(pdftex.def)             Requested size: 360.0pt x 282.07343pt.
-
-<./2_3_std=0_5.png, id=36, 490.7133pt x 384.4764pt>
+<./2_3_std=0_5.png, id=39, 490.7133pt x 384.4764pt>
 File: ./2_3_std=0_5.png Graphic file (type png)
  <use ./2_3_std=0_5.png>
-Package pdftex.def Info: ./2_3_std=0_5.png used on input line 83.
+Package pdftex.def Info: ./2_3_std=0_5.png used on input line 97.
 (pdftex.def)             Requested size: 270.0pt x 211.55653pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./2_3_star.png, id=37, 489.9906pt x 384.4764pt>
+<./2_3_star.png, id=40, 489.9906pt x 384.4764pt>
 File: ./2_3_star.png Graphic file (type png)
  <use ./2_3_star.png>
-Package pdftex.def Info: ./2_3_star.png used on input line 88.
+Package pdftex.def Info: ./2_3_star.png used on input line 102.
 (pdftex.def)             Requested size: 270.0pt x 211.86159pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[6] [7 <./2_3_std=0_5.png> <./2_3_star.png>] (./AIAss1.aux) ) 
+[7] [8 <./2_3_std=0_5.png> <./2_3_star.png>] (./AIAss1.aux) ) 
 Here is how much of TeX's memory you used:
- 2149 strings out of 495020
- 29610 string characters out of 6181324
- 87163 words of memory out of 5000000
+ 2150 strings out of 495020
+ 29280 string characters out of 6181324
+ 91163 words of memory out of 5000000
  5348 multiletter control sequences out of 15000+600000
  8431 words of font info for 31 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 37i,8n,23p,476b,237s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,23p,476b,241s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist
@@ -308,10 +287,10 @@ type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
 ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmtt10.pfb>
-Output written on AIAss1.pdf (7 pages, 530756 bytes).
+Output written on AIAss1.pdf (8 pages, 512174 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 42 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  36 words of extra memory for PDF output out of 10000 (max. 10000000)
 
