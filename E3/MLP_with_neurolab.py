@@ -15,4 +15,4 @@ error = net.train(x, t, epochs=3000, show=1000, goal=0.0002)
 out = net.sim(x)
 
 # Plot result
-print out-t
+print (out-t)
