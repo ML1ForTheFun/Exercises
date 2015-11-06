@@ -33,13 +33,15 @@ act = f_prop(x, w);
 err = ((activations[-1]-t)**2/2);
 d = np.vectorize(dtanh)([np.dot(w[0], s) for s in x]);
 E = np.mean(e);
-for ix in x:
-    for j in range(w[0]):
-        for i in range(w[0].T)
-        dEdw_0[j][i] = (act[1] - t)*ix*d[0][0];
-        dEdw_00 = (act[1] - t)*i[0]*d[0][0];
+dedw_0 = np.zeros(w[0].shape);
+dedw_1 = np.zeros(w[1].shape);
+for i in range(len(w[0].T)):
+    for j in range(len(w[0])):
+        for n in range(len(x)):
+            dedw_0[j,i] += (act[1][n] - t[n])*x[n][j]*d[n][i];
 
-dEdw_2 = (act[1] - t)*act[0]
+
+#dEdw_2 = (act[1] - t)*act[0]
 
     #loc_err = backward_prop(x, w, activations[1]);
     #m_loc_err = ([np.mean(err,0) for err in loc_err]);
