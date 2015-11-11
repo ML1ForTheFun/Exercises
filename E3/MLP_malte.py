@@ -2,9 +2,9 @@ import numpy as np
 import matplotlib.pyplot as mplt
 import pylab
 
-def NNL(hiddenneurons, a_f, a_fderiv, data):
+def NNL(hiddenneurons, a_f, a_fderiv, data, run_number):
     #Training data
-    (x, t) = data[:, 0], data[:,1],
+    (x, t) = data
     p = len(x)
     nhu = hiddenneurons
     x = x.reshape(p,1)
@@ -20,47 +20,78 @@ def NNL(hiddenneurons, a_f, a_fderiv, data):
 
     MeanErrors = [0]
 
-    for i in range(3000):
+    for i in range(5):
        #Error cost function
        e = 0.5*(o-t)**2;
 
        MeanErrors.append(np.mean(e))
 
        #break criterium
-       if np.abs(MeanErrors[-1]-MeanErrors[-2])/MeanErrors[-1]<10**-5:
+       if np.abs(MeanErrors[-1]-MeanErrors[-2])/MeanErrors[-1]<10**-10:
            break
 
        #Delta_j^v for calculating the weight shift; delta for output is 1 for the identity transfer function
-       #d = 4*np.cosh(np.dot(x,w[0].reshape(1,nhu)))**2/np.cosh(2*np.dot(x,w[0].reshape(1,nhu))+1)**2*np.dot(np.ones(p).reshape(p,1),w[1].reshape(1,nhu))
-       d = a_fderiv(np.dot(x, w[0].reshape(1, nhu)))*np.dot(np.ones(p).reshape(p,1),w[1].reshape(1,nhu))
+       d  = 4*np.cosh(np.dot(x,w[0].reshape(1,nhu)))**2/np.cosh(2*np.dot(x,w[0].reshape(1,nhu))+1)**2 * np.dot(np.ones(p).reshape(p,1),w[1].reshape(1,nhu))
+       #          bias->hiddenunit                    hiddenunit->output
+       db = 4*np.cosh(b[0])**2/np.cosh(2*b[0]+1)**2 * w[1]
+       #d = a_fderiv(np.dot(x, w[0].reshape(1, nhu)))*np.dot(np.ones(p).reshape(p,1),w[1].reshape(1,nhu))
        #weight adjustion
        dw1 = np.mean((o-t)*a,axis=0)
        dw0 = np.mean((o-t)*d*x,axis=0)
+       dwb = np.mean((o-t)*db,axis=0)
 
-       w[0]-=0.05*dw0
-       w[1]-=0.05*dw1
+       w[0]-=0.1*dw0
+       w[1]-=0.1*dw1
+       b[0]-=0.1*dwb
 
+       print("----\n"+str(np.dot(x,w[0].reshape(1,nhu))))
        a = np.tanh(np.dot(x,w[0].reshape(1,nhu))-b[0]);
+       print("----\n"+str(a)+"\n----\n"+str(b[0]))
        o = (np.mean(a*np.dot(np.ones(p).reshape(p,1),w[1].reshape(1,nhu)),axis=1) - b[1]*np.ones(p)).reshape(p,1);
 
     #a
     iterations = range(len(MeanErrors))
     mplt.plot(iterations,MeanErrors)
-    pylab.savefig('./3_1a.png', bbox_inches='tight')
+    pylab.savefig('./3_1a_'+str(run_number)+'.png', bbox_inches='tight')
     mplt.clf()
 
+    
     #b
     x = np.linspace(0.,1.,100).reshape(100,1)
     a = np.tanh(np.dot(x,w[0].reshape(1,nhu))-b[0]);
     for i in range(3):
        mplt.plot(x,a[:,i])
-    pylab.savefig('./3_1b.png', bbox_inches='tight')
+    pylab.savefig('./3_1b_'+str(run_number)+'.png', bbox_inches='tight')
     mplt.clf()
+
 
     #c
     o = (np.mean(a*np.dot(np.ones(100).reshape(100,1),w[1].reshape(1,nhu)),axis=1) - b[1]*np.ones(100)).reshape(100,1);
     mplt.plot(x,o)
-    pylab.savefig('./3_1c.png', bbox_inches='tight')
+    (x, t) = data
+    x = x.reshape(p,1)
+    t = t.reshape(p,1)
+    mplt.scatter(x,t)
+    pylab.savefig('./3_1c_'+str(run_number)+'.png', bbox_inches='tight')
     mplt.clf()
 
     return o[-1]
+
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 0)
+'''
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 1)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 2)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 3)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 4)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 5)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 6)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 7)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 8)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 9)
+NNL(3, np.tanh, "a_fderiv", np.genfromtxt('RegressionData.txt').T, 10)
+'''
+
+
+
+
+
