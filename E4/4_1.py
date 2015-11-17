@@ -12,9 +12,10 @@ n = 0.5
 def grad(w):
     return np.dot(H, w) + b
 
+#4.1a
 def grad_desc(w, n):
     return w - n*grad(w)
-    
+#4.1b
 def line_search(w):
     g = grad(w)
     div = np.dot(g.T,np.dot(H, g))
@@ -23,7 +24,7 @@ def line_search(w):
     else:
         a = 0
     return w + a*g
-
+#4.1c
 def conj_grad(w, d):
     div = np.dot(d.T,np.dot(H, d))
     if div!=0.:
@@ -32,7 +33,7 @@ def conj_grad(w, d):
         a = 0
     return w + a*d
 
-#Visualization
+#4.1 - iterations
 i = 10
 d = -grad(w_i)
 g = [grad(w_i)]
@@ -51,6 +52,7 @@ for s in range(1,i):
         d = np.array([[0.], [0.]])
     
 
+#4.1d - Visualization
 plt.scatter(*zip(*w_a), c='b', label='Gradient descent')
 plt.scatter(*zip(*w_b), c='r', label='Line search')
 plt.scatter(*zip(*w_c), c='g', label='Conjugate gradient')
