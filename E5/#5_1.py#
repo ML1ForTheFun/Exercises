@@ -81,7 +81,7 @@ bias = ax.bar(np.arange(4), (p_1_bias, p_5_bias, p_9_bias, p_14_bias), width, co
 variances = ax.bar(np.arange(4)+width, (p_1_var, p_5_var, p_9_var, p_14_var), width, color='b')
 bias_and_variances = ax.bar(np.arange(4)+2*width, (p_1_bias+p_1_var, p_5_bias+p_5_var, p_9_bias+p_9_var, p_14_bias+p_14_var), width, color='g')
 plt.title('Bias and variance for the models')
-ax.set_xticks(np.arange(4)*2*width)
+ax.set_xticks(np.arange(4)+2*width)
 ax.set_xticklabels(('deg(p)=1', 'deg(p)=5', 'deg(p)=9', 'deg(p)=14'))
 ax.legend((bias, variances, bias_and_variances), ('Biases', 'Variances', 'Biases+Variances'))
 pl.savefig('Bias_var.png')
