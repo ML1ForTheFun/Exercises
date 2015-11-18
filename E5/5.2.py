@@ -38,7 +38,15 @@ def computeTotalRegularizationerror(inputarray, y, regularizationparameter):
                                     np.asmatrix(np.dot(inputarray.T,inputarray)).I, \
                                     np.dot(inputarray.T,y)\
                               ))
-   
+   '''
+   #theta = (XT.X - lambda*I)^-1 * XT.y
+   regularized_optimum_weightarray_innerterm = regularizationparameter * np.identity(number_of_inputs)
+   regularized_optimum_weightarray_innerterm[0,0]=0
+   optimum_weightarray = np.asarray(np.dot(\
+                                    np.asmatrix(np.dot(inputarray.T,inputarray) - regularized_optimum_weightarray_innerterm).I, \
+                                    np.dot(inputarray.T,y)\
+                              ))
+   '''
    errors = .5 * (y- np.dot(inputarray, optimum_weightarray.T))**2
    #print "inputs dot weights:\n", np.dot(inputarray, optimum_weightarray.T)
    trainingerror =  (1.0/len(inputarray))*np.sum( errors )
@@ -65,7 +73,8 @@ def computeTotalRegularizationerrorByCrossValidation((x1, x2, y), regularization
 
    
 def normalizeInputs(inputarray):
-   return inputarray
+   norm=np.linalg.norm(inputarray)
+   return inputarray if norm==0 else inputarray/norm
 
 
 
@@ -74,12 +83,13 @@ def normalizeInputs(inputarray):
 #5.2a
 visited_regularizationparameters = []
 visited_regularizationparameter_errors = []
-minimum_regularizationerror = 1
-minimum_regularizationparameter = 0
-for regularizationparameter in np.linspace(-1, 1, 50):
+minimum_regularizationerror = -1
+minimum_regularizationparameter = 1000
+for regularizationparameter in np.linspace(0, 10, 1000):
    #print regularizationparameter
    visited_regularizationparameters.append( [regularizationparameter, computeTotalRegularizationerrorByCrossValidation(makeTrainingData(), regularizationparameter, 10)] )
-   if visited_regularizationparameters[-1][1] < minimum_regularizationerror:
+   print visited_regularizationparameters[-1]
+   if visited_regularizationparameters[-1][1] < minimum_regularizationerror or minimum_regularizationerror==-1:
       minimum_regularizationerror = visited_regularizationparameters[-1][1]
       minimum_regularizationparameter = visited_regularizationparameters[-1][0]
 
