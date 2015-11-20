@@ -1,0 +1,12 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\begin{document}
+\noindent
+Martin Lundfall, Henri Bunting, Malte Siemens
+\begin{centering}
+  \section*{Exercise sheet 06 - Machine Intelligence I}
+  \end{centering}
+\section*{6.4}
+\end{document}

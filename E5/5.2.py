@@ -85,10 +85,10 @@ visited_regularizationparameters = []
 visited_regularizationparameter_errors = []
 minimum_regularizationerror = -1
 minimum_regularizationparameter = 1000
-for regularizationparameter in np.linspace(0, 10, 1000):
+for regularizationparameter in np.linspace(0, 0.1, 20):
    #print regularizationparameter
    visited_regularizationparameters.append( [regularizationparameter, computeTotalRegularizationerrorByCrossValidation(makeTrainingData(), regularizationparameter, 10)] )
-   print visited_regularizationparameters[-1]
+   #print visited_regularizationparameters[-1]
    if visited_regularizationparameters[-1][1] < minimum_regularizationerror or minimum_regularizationerror==-1:
       minimum_regularizationerror = visited_regularizationparameters[-1][1]
       minimum_regularizationparameter = visited_regularizationparameters[-1][0]
