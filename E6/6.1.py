@@ -9,7 +9,7 @@ def createDataAsXYL(numberperset=60):
       
    return data[1:].T
 
-def getClassifiedAsFromData(data, label):
+def getDataWithLabel(data, label):
    return data.T[data[2]==label].T
 
 data = createDataAsXYL(120)
@@ -17,6 +17,6 @@ data = createDataAsXYL(120)
 #6.1a
 
 #6.1b
-mplt.scatter(getClassifiedAsFromData(data,  1)[0], getClassifiedAsFromData(data,  1)[1], color='blue')
-mplt.scatter(getClassifiedAsFromData(data, -1)[0], getClassifiedAsFromData(data, -1)[1], color='green')
+mplt.scatter(getDataWithLabel(data,  1)[0], getDataWithLabel(data,  1)[1], color='blue')
+mplt.scatter(getDataWithLabel(data, -1)[0], getDataWithLabel(data, -1)[1], color='green')
 mplt.savefig('6.1b.png', bbox_inches='tight')
