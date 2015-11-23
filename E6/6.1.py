@@ -11,7 +11,7 @@ def createDataAsXYL(numberperset=60):
    return data[1:].T
 
 def getDataWithLabel(data, label):
-   return data.T[data[2]==label].T
+   return data[data.T[2]==label]
 
 def findNearestNeighborIndiciesTo(data, pointindex, numberofneighbors):
    #keep record of distances and indicies of our minimums
@@ -59,14 +59,23 @@ def computeDistance(ax,ay,bx,by):
    
    
 #6.1
-data = createDataAsXYL(30)
+data = createDataAsXYL(60).T
 
-#6.1a
-centerpointindex = 7
-nearestneighborindicies = findNearestNeighborIndiciesTo(data.T, centerpointindex, 3)
-print centerpointindex, nearestneighborindicies
+for k in [1,3,5]:
+   classifiedasones = [None] * len(data)
+   for centerpointindex in range(len(data)):
+      classifications = data[ findNearestNeighborIndiciesTo(data, centerpointindex, k) ].T[2]
+      onespercentage = np.sum( (classifications + 1)*.5 ) / k
+      #print onespercentage > .5, onespercentage, classifications
 
-#6.1b
-mplt.scatter(getDataWithLabel(data,  1)[0], getDataWithLabel(data,  1)[1], color='blue', marker='s')
-mplt.scatter(getDataWithLabel(data, -1)[0], getDataWithLabel(data, -1)[1], color='blue', marker=r'$\star$')
-mplt.savefig('6.1b.png', bbox_inches='tight')
+      classifiedasones[centerpointindex] = onespercentage > .5
+   #print np.asarray(classifiedasones)
+   #print len(data[np.asarray(classifiedasones)]),len(data[np.asarray(classifiedasones)==False])
+   ones = data[np.asarray(classifiedasones)]
+   zeros = data[np.asarray(classifiedasones)==False]
+
+   mplt.scatter(getDataWithLabel(zeros,  1).T[0], getDataWithLabel(zeros,  1).T[1], color='red',  marker='s')        #generated as  1, marked as -1
+   mplt.scatter(getDataWithLabel(ones,   1).T[0], getDataWithLabel(ones,   1).T[1], color='blue', marker='s')        #generated as  1, marked as  1
+   mplt.scatter(getDataWithLabel(zeros, -1).T[0], getDataWithLabel(zeros, -1).T[1], color='blue', marker=r'$\star$') #generated as -1, marked as -1
+   mplt.scatter(getDataWithLabel(ones,  -1).T[0], getDataWithLabel(ones,  -1).T[1], color='red',  marker=r'$\star$') #generated as -1, marked as  1
+   mplt.savefig('6.1b_k='+str(k)+'.png', bbox_inches='tight')
