@@ -1,67 +1,41 @@
 import numpy as np, matplotlib.pyplot as mplt, pylab
+from scipy.spatial import cKDTree as tree
+from random import randint
 
 def createDataAsXYL(numberperset=60):
-   data = [[0, 0, 0]]
-   covariancematrix = [[.1,0,0],[0,.1,0],[0,0,0]]
-   for i in range(numberperset):
-      data = np.append(data, [.5*(np.random.multivariate_normal([ 0, 1, 1], covariancematrix) + np.random.multivariate_normal([ 1, 0, 1], covariancematrix))], axis=0)
+   #data = []
+   #covariancematrix = [[.2,0,0],[0,.2,0],[0,0,0]]
+   data = [[None, None, None] for x in range(2*numberperset)]
+   sd = np.sqrt(.1)
+   for i in range(0, 2*numberperset, 2):
+      #expected this to work
+      #data = np.append(data, [.5*(np.random.multivariate_normal([ 0, 1, 1], covariancematrix) + np.random.multivariate_normal([ 1, 0, 1], covariancematrix))], axis=0)
       #data = np.append(data, [.5*(np.random.multivariate_normal([ 0, 0,-1], covariancematrix) + np.random.multivariate_normal([ 1, 1,-1], covariancematrix))], axis=0)
-      data = np.append(data, [.5*(np.random.multivariate_normal([ 1, 1,-1], covariancematrix) + np.random.multivariate_normal([ 1, 1,-1], covariancematrix))], axis=0)
       
-   return data[1:]
+      #hacky solution
+      myrand = randint(0,1)
+      data[i] = [np.random.normal(myrand, sd), np.random.normal(not myrand, sd),  1]
+      myrand = randint(0,1)
+      data[i+1] = [np.random.normal(myrand, sd), np.random.normal(myrand, sd), -1]
+      
+   return np.array(data)
 
 def getDataWithLabel(data, label):
    return data[data.T[2]==label]
 
-def findNearestNeighborIndiciesTo(data, pointindex, numberofneighbors):
-   #keep record of distances and indices of our minimums
-   mindistances = [999999] * numberofneighbors
-   minindices = [pointindex] * numberofneighbors
-   for otherpointindex in range(len(data)):
-      #print str(pointindex)+" --- "+str(otherpointindex)+" --- "+str(data[otherpointindex])
-      if otherpointindex==pointindex:
-         continue
+def findNearestNeighborIndiciesToScipy(data, pointindex, numberofneighbors):
+   t = tree(data[:,:-1])
+   return t.query(data[:,:-1][pointindex], numberofneighbors+1)[1][1:]
       
-      #find distance to other point
-      distance = computeDistance(data[pointindex][0], data[pointindex][1], data[otherpointindex][0], data[otherpointindex][1])
-      #print ""+str(pointindex)+" ("+str(data[pointindex][0])+","+str(data[pointindex][1])+") -> "+str(otherpointindex)+" ("+str(data[otherpointindex][0])+","+str(data[otherpointindex][1])+") : "+str(distance)
-
-      #find the max of our minimum points
-      maxmindistance = -1
-      maxminindex = 0
-      for minpointindex in range(len(minindices)):
-         #print "\t\tmpi:"+str(minpointindex)+" indicies:"+str(minindices)+" distances:"+str(mindistances)
-         #print("\t\tmin["+str(minpointindex)+"]:"+str(mindistances[minpointindex])+ " >? min["+str(maxminindex)+"]:"+str(mindistances[maxminindex]))
-         if mindistances[minpointindex] > mindistances[maxminindex]:
-            maxminindex = minpointindex
-            maxmindistance = mindistances[minpointindex]
-            #print "\t\t\tnew maxmin min["+str(maxminindex)+"]:"+str(mindistances[maxminindex])
-            
-      #print "\tmin["+str(maxminindex)+"]:"+str(mindistances[maxminindex])+" minindices:"+str(minindices)+" mindistances:"+str(mindistances)
-
-      #replace max with this new value if closer
-      #print "\tnewdistance: "+str(distance)+" <? olddistance: "+str(mindistances[maxminindex])
-      if distance < mindistances[maxminindex]:
-         mindistances[maxminindex] = distance
-         minindices[maxminindex] = otherpointindex
-         #print "\t\tadded to minindices["+str(maxminindex)+"]:"+str(otherpointindex)+" mindistances["+str(maxminindex)+"]:"+str(distance)
-      
-   return minindices
-
-def computeDistance(ax, ay, bx, by):
-   return np.sqrt((ax-bx)**2 + (ay-by)**2)
-   
-   
 #6.1
 data = createDataAsXYL(60)
-#print data
 
 for k in [1, 3, 5]:
    classifiedasones = [None] * len(data)
    
    #find the classifications
    for centerpointindex in range(len(data)):
-      classifications = data[ findNearestNeighborIndiciesTo(data, centerpointindex, k) ].T[2]
+      classifications = data[ findNearestNeighborIndiciesToScipy(data, centerpointindex, k) ].T[2]
       onespercentage = np.sum( (classifications + 1)*.5 ) / k
       #print onespercentage > .5, onespercentage, classifications
 
