@@ -7,9 +7,9 @@ def createDataAsXYL(numberperset=60):
    data = [[None, None, None] for x in range(2*numberperset)]
    sd = np.sqrt(.1)
    for i in range(0, 2*numberperset, 2):
-      myrand = randint(0,1)
+      myrand = randint(0,2)
       data[i] = [np.random.normal(myrand, sd), np.random.normal(not myrand, sd),  1]
-      myrand = randint(0,1)
+      myrand = randint(0,2)
       data[i+1] = [np.random.normal(myrand, sd), np.random.normal(myrand, sd), -1]
       
    return np.array(data)
