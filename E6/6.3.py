@@ -9,7 +9,7 @@ def Phi(p, sd, reps):
     return np.array([Psi(reps[i], sd, p) for i in range(k)]+[1.])
 
 def Psi(basis, sd, p):
-    return np.exp((np.linalg.norm(p-basis)**2)/(2*sd**2))
+    return np.exp(-(np.linalg.norm(p-basis, axis=1)**2)/(2*sd**2))
 
 ks = [2,4]
 sds = [0.5,0.6]
@@ -36,8 +36,7 @@ for k in ks:
         design_matrix = np.array([np.exp(-(np.linalg.norm(data-my[i],axis=1)**2)/(2*sd**2)) for i in range(k)]+[np.array([1. for i in range(numberperset*2)])])
         weights = np.dot(np.linalg.pinv(design_matrix).T,target)
         print sd, k
-        for i in range(10):
-            print y(data[i],weights, sd, reps)
+        print y(data[:10],weights, sd, reps)
 
 #---Boundary lines---#
 h = .08  # step size in the mesh
