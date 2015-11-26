@@ -38,4 +38,12 @@ for k in ks:
         print sd, k
         for i in range(10):
             print y(data[i],weights, sd, reps)
-            
+
+#---Boundary lines---#
+h = .08  # step size in the mesh
+# create a mesh to plot in
+x_min, x_max = data[:, 0].min(), data[:, 0].max()
+y_min, y_max = data[:, 1].min(), data[:, 1].max()
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                     np.arange(y_min, y_max, h))
+allpoints = np.c_[xx.ravel(), yy.ravel()]
