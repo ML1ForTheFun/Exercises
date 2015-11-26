@@ -12,9 +12,8 @@ def Psi(basis, sd, p):
     return np.exp(-(np.linalg.norm(p-basis, axis=1)**2)/(2*sd**2))
 
 ks = [2,4]
-sds = [0.5,0.6]
+sds = [0.3,0.5]
 numberperset=60
-my = np.array([[0,1],[1,0],[0,0],[1,1]])
 data = [[None, None, None] for x in range(2*numberperset)]
 sd = np.sqrt(.1)
 toggle = [1,0]
@@ -33,10 +32,10 @@ for k in ks:
     cluster.fit(data)
     reps = cluster.cluster_centers_
     for sd in sds:
-        design_matrix = np.array([np.exp(-(np.linalg.norm(data-my[i],axis=1)**2)/(2*sd**2)) for i in range(k)]+[np.array([1. for i in range(numberperset*2)])])
+        design_matrix = np.array([Psi(data,sd,reps[i]) for i in range(k)]+[np.array([1. for i in range(numberperset*2)])])
         weights = np.dot(np.linalg.pinv(design_matrix).T,target)
         print sd, k
-        print y(data[:10],weights, sd, reps)
+        print y(data[:10], weights, sd, reps)
 
 #---Boundary lines---#
 h = .08  # step size in the mesh
