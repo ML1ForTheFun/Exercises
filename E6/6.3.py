@@ -27,16 +27,6 @@ for i in range(0, 2*numberperset, 2):
 data = np.array(data)
 target = np.array([1.,-1.]*numberperset)
 
-for k in ks:
-    cluster = KMeans(k)
-    cluster.fit(data)
-    reps = cluster.cluster_centers_
-    for sd in sds:
-        design_matrix = np.array([Psi(data,sd,reps[i]) for i in range(k)]+[np.array([1. for i in range(numberperset*2)])])
-        weights = np.dot(np.linalg.pinv(design_matrix).T,target)
-        print sd, k
-        print y(data[:10], weights, sd, reps)
-
 #---Boundary lines---#
 h = .08  # step size in the mesh
 # create a mesh to plot in
@@ -45,3 +35,21 @@ y_min, y_max = data[:, 1].min(), data[:, 1].max()
 xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
                      np.arange(y_min, y_max, h))
 allpoints = np.c_[xx.ravel(), yy.ravel()]
+
+for k in ks:
+    cluster = KMeans(k)
+    cluster.fit(data)
+    reps = cluster.cluster_centers_
+    for sd in sds:
+        design_matrix = np.array([Psi(data,sd,reps[i]) for i in range(k)]+[np.array([1. for i in range(numberperset*2)])])
+        weights = np.dot(np.linalg.pinv(design_matrix).T,target)
+        result = y(allpoints, weights, sd, reps)
+        cat_0 = result > 0
+        cat_1 = np.invert(cat_0)
+        fig = plt.figure()
+        plt.scatter(allpoints[cat_0][:,0],allpoints[cat_0][:,1], color='green', alpha=0.2)
+        plt.scatter(allpoints[cat_1][:,0],allpoints[cat_1][:,1], color='yellow', alpha=0.2)
+        plt.scatter(data[:,0], data[:,1])
+        plt.scatter(reps[:,0], reps[:,1], color='red')
+        plt.savefig('./sd={0}_k={1}.png'.format(sd,k))
+        plt.close(fig)
