@@ -1,0 +1,17 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\begin{document}
+\noindent
+Martin Lundfall, Henri Bunting, Malte Siemers, Patrik Bey
+\begin{centering}
+  \section*{Exercise sheet 07 - Machine Intelligence I}
+  \end{centering}
+\section*{7.1}
+Given the common covariance matrix $\Sigma$ of the two classes, we find the eigenvalues of the matrix through eigenvalue decomposition (find the solutions of $\lambda$ of $det(A - \lambda I)=0$) and set the weights to $w_i := \lambda_i$ for each dimension $i \in \{1,..., d\}$. We then get $b$ from the average of the conditional means of the two classes $b = (\mu_1-\mu_2)/2$.\\
+If we have two different covariance matrices for the two classes then the slope of the hyperplane won't simply be the eigenvalues of the covariance matrix, but rather by the difference of the means weighted by the sum of the covariances as given by Fisher:\\
+$w \propto (\Sigma_0+\Sigma_1)^{-1}(\mu_1 - \mu_0)$\\
+\section*{7.2}
+
