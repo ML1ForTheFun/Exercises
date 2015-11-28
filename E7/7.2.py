@@ -141,7 +141,7 @@ mplt.plot(perclasssample_list, percent_correct_for_train_stds, color='seagreen',
 mplt.plot(perclasssample_list, percent_correct_for_test_stds, color='greenyellow',  label='Test % Correct std')
 mplt.plot(perclasssample_list, weightx_stds, color='indigo',  label='w1 std')
 mplt.plot(perclasssample_list, weighty_stds, color='fuchsia',  label='w2 std')
-mplt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05), fancybox=True, shadow=True, ncol=5)
+mplt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05), fancybox=True, shadow=True, ncol=4)
 mplt.savefig('7.2.png', bbox_inches='tight')
 mplt.clf()
 
