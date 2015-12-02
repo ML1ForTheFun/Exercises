@@ -29,25 +29,22 @@ def getXYTraindataByClassesAndPredictions():
 
 def computeMinimumWeights(data):
    #(XTX)^-1 XTy
-   x = np.asmatrix(data.T[0:2]).T   #120x2
+   x = np.hstack(( np.ones(( len(data),1 )), np.asmatrix(data.T[0:2]).T ))     #120x3
    y = np.asmatrix(data.T[2]).T     #120x1
-   
+
    #print (x.T.dot(x)).shape                                #2x120 . 120x2 = 2x2
    #print np.linalg.inv(x.T.dot(x)).dot(x.T).shape          #2x2 . 2x120 = 2x120
    #print np.linalg.inv(x.T.dot(x)).dot(x.T).dot(y).shape   #2x120 . 120x1 = 2x1
    
-   return np.linalg.inv(x.T.dot(x)).dot(x.T).dot(y)
+   return np.linalg.pinv(x.T.dot(x)).dot(x.T).dot(y)
 
 def computeTestDataPredictions(testdata, weights):
-   x = np.asmatrix(testdata.T[0:2])
-   #print "computeTestDataPredictions x:",x.shape, x
-   #print "weights T:",np.asmatrix(weights).T.shape, np.asmatrix(weights).T
-   #print "wTx:",np.asmatrix(weights).T.dot(x).T
-   #print "sign(wTx):", np.sign(np.asmatrix(weights).T.dot(x).T)
-   return np.sign(np.asmatrix(weights).T.dot(x).T)
+   x = np.hstack(( np.ones(( len(testdata),1 )), np.asmatrix(testdata.T[0:2].T) ))     #120x3
+   return np.sign(np.asmatrix(weights).T.dot(x.T).T)
 
 
 perclasssample_list = [1,2,3,4,5,10,20,50]
+totalsample_list = [2,4,6,8,10,20,40,100]
 percent_correct_for_train_means = []
 percent_correct_for_test_means = []
 weightx_means = []
@@ -64,6 +61,7 @@ for perclasssamplesize in perclasssample_list:
 
    #7.1 1 - Generate data
    testdata = np.hstack(( createDataAsXYL(1000/2), np.zeros(( 1000,1 )) ))  #nx4 (X1,X2,C,P)
+   
    
    for trail in range(50):
       #7.1 1 - Generate data
@@ -83,64 +81,36 @@ for perclasssamplesize in perclasssample_list:
       #7.1 4 - Calculate % correct
       percent_correct_for_train = 100 * float(len(traindatac1p1) + len(traindatac2p2)) / float(len(traindata))
       percent_correct_for_test = 100 * float(len(testdatac1p1) + len(testdatac2p2)) / float(len(testdata))
-      #print percent_correct_for_train,"percent correct for",perclasssamplesize,"training samples"
-      #print percent_correct_for_test,"percent correct for",perclasssamplesize,"test samples"
 
+      #save current values
       percent_correct_for_train_list.append( percent_correct_for_train )
       percent_correct_for_test_list.append( percent_correct_for_test )
-      weightx_list.append( minimumweights[0,0] )
-      weighty_list.append( minimumweights[1,0] )
-
-      
-      '''
-      #correctly classified test data
-      mplt.scatter(testdatac1p1.T[0], testdatac1p1.T[1], color='blue',  marker='s', label='Test C:-1 P:-1')
-      mplt.scatter(testdatac1p2.T[0], testdatac1p2.T[1], color='blue',  marker=r'$\star$', label='Test C:-1 P:+1')
-      #incorrectly classified test data
-      mplt.scatter(testdatac2p1.T[0], testdatac2p1.T[1], color='red',  marker='s', label='Test C:+1 P:-1')
-      mplt.scatter(testdatac2p2.T[0], testdatac2p2.T[1], color='red',  marker=r'$\star$', label='Test C:+1 P:+1')
-      #training data
-      mplt.scatter(datac1.T[0], datac1.T[1], color='green',  marker='s', label='Train C:+1')
-      mplt.scatter(datac2.T[0], datac2.T[1], color='green',  marker=r'$\star$', label='Train C:-1')
-      mplt.legend(loc=1)
-      mplt.savefig('7.2_N='+str(perclasssamplesize)+'.png', bbox_inches='tight')
-      mplt.clf()
-      '''
-   '''
-   print "Samplesize =",str(2*perclasssamplesize)
-   print len(percent_correct_for_train_list), percent_correct_for_train_list
-   print len(percent_correct_for_test_list), percent_correct_for_test_list
-   print len(weightx_list), weightx_list
-   print len(weighty_list), weighty_list
-   '''
+      weightx_list.append( minimumweights[1,0] )
+      weighty_list.append( minimumweights[2,0] )
    
+   #save means
    percent_correct_for_train_means.append( np.mean(percent_correct_for_train_list) )
    percent_correct_for_test_means.append( np.mean(percent_correct_for_test_list) )
    weightx_means.append( np.mean(weightx_list) )
    weighty_means.append( np.mean(weighty_list) )
    
+   #save stds
    percent_correct_for_train_stds.append( np.std(percent_correct_for_train_list) )
    percent_correct_for_test_stds.append( np.std(percent_correct_for_test_list) )
    weightx_stds.append( np.std(weightx_list) )
    weighty_stds.append( np.std(weighty_list) )
 
-'''   
-print percent_correct_for_train_means
-print percent_correct_for_test_means
-print weightx_means
-print weighty_means
-'''
 
 #training data
 mplt.yscale('log')
-mplt.plot(perclasssample_list, percent_correct_for_train_means, color='firebrick',  label='Train % Correct mean')
-mplt.plot(perclasssample_list, percent_correct_for_test_means, color='tomato',  label='Test % Correct mean')
-mplt.plot(perclasssample_list, weightx_means, color='slateblue',  label='w1 mean')
-mplt.plot(perclasssample_list, weighty_means, color='cornflowerblue',  label='w2 mean')
-mplt.plot(perclasssample_list, percent_correct_for_train_stds, color='seagreen',  label='Train % Correct std')
-mplt.plot(perclasssample_list, percent_correct_for_test_stds, color='greenyellow',  label='Test % Correct std')
-mplt.plot(perclasssample_list, weightx_stds, color='indigo',  label='w1 std')
-mplt.plot(perclasssample_list, weighty_stds, color='fuchsia',  label='w2 std')
+mplt.plot(totalsample_list, percent_correct_for_train_means, color='firebrick',  label='Train % Correct mean')
+mplt.plot(totalsample_list, percent_correct_for_test_means, color='tomato',  label='Test % Correct mean')
+mplt.plot(totalsample_list, weightx_means, color='slateblue',  label='w1 mean')
+mplt.plot(totalsample_list, weighty_means, color='cornflowerblue',  label='w2 mean')
+mplt.plot(totalsample_list, percent_correct_for_train_stds, color='seagreen',  label='Train % Correct std')
+mplt.plot(totalsample_list, percent_correct_for_test_stds, color='greenyellow',  label='Test % Correct std')
+mplt.plot(totalsample_list, weightx_stds, color='indigo',  label='w1 std')
+mplt.plot(totalsample_list, weighty_stds, color='fuchsia',  label='w2 std')
 mplt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05), fancybox=True, shadow=True, ncol=4)
 mplt.savefig('7.2.png', bbox_inches='tight')
 mplt.clf()
