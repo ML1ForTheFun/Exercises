@@ -12,7 +12,26 @@ Martin Lundfall, Henri Bunting, Malte Siemers, Patrik Bey
 \section*{8.1}
 \section*{8.2}
 \section*{8.3}
+\subsection*{a)}
+A margin can be thought of as the 'width' of the decision boundary of the linear connectionist neuron, or how close we allow the boundary line to come to the data points. The effect of increasing the margin is that the number of possible classifying lines decreases which effectively reduces the complexity of the classifier. If this can be done without affecting the training/empirical error of the classifier, it can reduce the generalization error.
+\subsection*{b)}
+The Euclidean distance $d(x^\alpha,w,b)$ from a sample $x^{(\alpha)}$ to the decision boundary line $L = \{ x \in X | w^Tx + b = 0\}$ is given by 
+\begin{equation}
+d(x^\alpha,w,b) = |\frac{w^Tx^{(\alpha)}}{||w||}+\frac{- b}{||w||}| = \frac{1}{||w||}\left ( w^Tx^{(\alpha)} + b \right )
+\end{equation}
+With the constraint that $w^Tx^{(\alpha)} + b \leq 1$ for all $x \in X$, we get 
+\begin{equation}
+d(x^\alpha,w,b) \leq \frac{1}{||w||}
+\end{equation}
+\subsection*{c)}
 
 \section*{8.4}
 \section*{8.5}
 \end{document}
+
+^ ^
+
+^
+^
+^
+^
