@@ -45,7 +45,7 @@ The Khuhn-Tucker conditions implies that $w$ can be given as a linear combinatio
 \begin{equation}
 w = \sum_{\alpha}^p\lambda_\alpha y_T^{(\alpha)}x^{(\alpha)}
 \end{equation}
-and the $b$ can be given by looking at the support vectors, i. e. the points that lie closest to the boundary line and therefore satisfy:
+and the $b$ can be given by looking at the support vectors, i. e. the points that lie closest to the decision boundary and therefore satisfy:
 \begin{equation}
 y_T^{(\alpha)}(w^Tx^{(\alpha)}+b) = 1
 \end{equation}
@@ -55,6 +55,24 @@ b = \frac{1}{N_{SV}}\sum_{i = 1} ^{N_{SV}}(w^Tx_i - y_i)
 \end{equation}
 Where $i$ is indexing over the number of support vectors, $N_{SV}$.
 \section*{8.4}
+\subsection{a)}
+Since we have that the support vectors, i.e. the datapoints lying closest to the decision boundary satisfy $y_T^{(\alpha)}(w^Tx^{(\alpha)}+b) = 1$, the remaining datapoints will require $\lambda$ to be zero in order to minimize the lagrangian. Therefore, it turns out that these are the only vectors we really have to pay attention to, and the others are already 'decided' by classifying with respect to the support vectors.
+\subsection{b)}
+In Exercise 8.3, we derived the following conditions:
+\begin{equation}
+w = \sum_{\alpha=1}^p \lambda_\alpha y_T^{(\alpha)}x^{(\alpha)}
+\end{equation}
+\begin{equation}
+0 = - \sum_{\alpha=1}^p \lambda_\alpha y_T^{(\alpha)}
+\end{equation}
+We put this into the Lagrangian:
+\begin{equation}
+\begin{split}
+L_{(x_k, \{\lambda_k\})} =  \frac{1}{2} \sum _{\alpha, \beta=1}^p\lambda_\alpha \lambda_\beta y_T^{(\alpha)}y_T^{(\beta)}(x^{(\alpha)})^Tx^{(\beta)}-
+\\\sum _{\alpha=1}^p\lambda_\alpha y_T^{(\alpha)} \left (\sum_{\beta=1}^p \lambda_\beta y_T^{(\beta)}(x^{(\beta)})^T \right ) x^{(\alpha)}  -\sum_{\alpha=1}^p\lambda_\alpha y_T^{(\alpha)}- \sum_{\alpha=1}^p\lambda_\alpha
+\end{split}
+\end{equation}
+The penultimate term term will disappear thanks to the constraint given by optimizing wwith respect to $b$, and we see that the first two terms are the same except for the constant, and we arrive at the given expression.
 \section*{8.5}
 \end{document}
 
