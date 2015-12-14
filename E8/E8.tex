@@ -24,7 +24,36 @@ With the constraint that $w^Tx^{(\alpha)} + b \leq 1$ for all $x \in X$, we get
 d(x^\alpha,w,b) \leq \frac{1}{||w||}
 \end{equation}
 \subsection*{c)}
-
+The \textit{primal optimization problem} offers a method of maximizing the margin of the classifier while keeping the constraint that we still classify all training points correctly. This is done by using the Kuhn–Tucker conditions, a generalization of Lagrange multipliers, which involves minimizing the Lagrange equation:
+\begin{equation}
+  L_{(x_k, \{\lambda_k\})} = f_0(x) + \sum_{k=1}^m \lambda_k f_k(x)
+\end{equation}
+Where $f_k$ are constraints expressed in the form that they must be smaller than or equal to zero, and $f_0(x)$ is the function that we want to minimize. In our case, the constraint set by normalizing the margin gives $f(x) = -(y_T(w^Tx + b) -1)$ on this form. Since we want to maximize the margin, we want to minimize $f_0(x) = \frac{||w||^2}{2}$.\\
+The aim is to minimize the Lagrangian function, and we do this by first minimizing with respect to $w$. This will result us an expression on the form:
+\begin{equation}
+w = \sum_{\alpha=1}^p \lambda_\alpha y_T^{(\alpha)}x^{(\alpha)}
+\end{equation}
+Where $\alpha$ is indexing over $p$ datapoints. Then, minimizing with respect to $b$ we get the following constraint on $\lambda$ and $y_T$:
+\begin{equation}
+0 = - \sum_{\alpha=1}^p \lambda_\alpha y_T^{(\alpha)}
+\end{equation}
+Putting these results back into the Lagrange equation, we attain:
+\begin{equation}
+L_{(x_k, \{\lambda_k\})} = -\frac{1}{2} \sum _{\alpha, \beta=1}^p\lambda_\alpha \lambda_\beta y_T^{(\alpha)}y_T^{(\beta)}(x^{(\alpha)})^Tx^{(\beta)}+\sum_{\alpha=1}^p\lambda_\alpha
+\end{equation}
+The Khuhn-Tucker conditions implies that $w$ can be given as a linear combination of the data points:
+\begin{equation}
+w = \sum_{\alpha}^p\lambda_\alpha y_T^{(\alpha)}x^{(\alpha)}
+\end{equation}
+and the $b$ can be given by looking at the support vectors, i. e. the points that lie closest to the boundary line and therefore satisfy:
+\begin{equation}
+y_T^{(\alpha)}(w^Tx^{(\alpha)}+b) = 1
+\end{equation}
+And we get:
+\begin{equation}
+b = \frac{1}{N_{SV}}\sum_{i = 1} ^{N_{SV}}(w^Tx_i - y_i)
+\end{equation}
+Where $i$ is indexing over the number of support vectors, $N_{SV}$.
 \section*{8.4}
 \section*{8.5}
 \end{document}
