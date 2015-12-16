@@ -10,6 +10,49 @@ Martin Lundfall, Henri Bunting, Malte Siemers, Patrik Bey
   \section*{Exercise sheet 08 - Machine Intelligence I}
   \end{centering}
 \section*{8.1}
+Given:
+\begin{equation}
+C_{(p, N)} = 2*\sum_{k = 0}^{N - 1}{p-1 \choose k}
+\end{equation}
+Prove:
+\begin{equation}
+C_{(p, N)} + C_{(p, N-1)} = C_{(p+1, N)}
+\end{equation}
+Proof:\\
+By the definition of C, we can rewrite into sums:
+\begin{equation}
+2*\sum_{k = 0}^{N - 1}{p-1 \choose k} + 2*\sum_{k = 0}^{N - 2}{p-1 \choose k} = 2*\sum_{k = 0}^{N - 1}{p \choose k}
+\end{equation}
+We can then divide out the 2:
+\begin{equation}
+\sum_{k = 0}^{N - 1}{p-1 \choose k} + \sum_{k = 0}^{N - 2}{p-1 \choose k} = \sum_{k = 0}^{N - 1}{p \choose k}
+\end{equation}
+We know:
+\begin{equation}
+\sum_{k = 0}^{0}{p-1 \choose k} = {p-1 \choose 0} = 1
+\end{equation}
+So we pull out the first k=0 terms:
+\begin{equation}
+1+\sum_{k = 1}^{N - 1}{p-1 \choose k} + \sum_{k = 0}^{N - 2}{p-1 \choose k} = 1+\sum_{k = 1}^{N - 1}{p \choose k}
+\end{equation}
+But then we subtract them to get rid of them and rewrite the second term so that k starts at 1:
+\begin{equation}
+\sum_{k = 1}^{N - 1}{p-1 \choose k} + \sum_{k = 1}^{N - 1}{p-1 \choose k-1} = \sum_{k = 1}^{N - 1}{p \choose k}
+\end{equation}
+Since the sums have the same indices, we can reform them into a single sum:
+\begin{equation}
+\sum_{k = 1}^{N - 1}({p-1 \choose k} + {p-1 \choose k-1}) = \sum_{k = 1}^{N - 1}{p \choose k}
+\end{equation}
+And after dropping the sums we get:
+\begin{equation}
+{p-1 \choose k} + {p-1 \choose k-1} = {p \choose k}
+\end{equation}
+
+Which is the same as the binomial theorem:
+\begin{equation}
+{r \choose q} + {r \choose q-1} = {r+1 \choose q}
+\end{equation}
+
 \section*{8.2}
 \section*{8.3}
 \subsection*{a)}
