@@ -54,6 +54,19 @@ Which is the same as the binomial theorem:
 \end{equation}
 
 \section*{8.2}
+\subsection*{a)}
+
+\begin{figure}[h]
+  \includegraphics[width=0.8\textwidth]{geometry.png}
+  \caption{Geometry of a linear classifier. $\underline{\mathbf{x}}$ is the vector to the location of a data point, $\underline{\mathbf{w}}$ the weight vector of the neuron and $\mathbf{b}$ the distance from the origin to the classification boundary.}
+\end{figure}
+
+The geometry of a binary classifier of form $y = sign(\underline{\mathbf{w}}^T\underline{\mathbf{x}} - b)$ is illustrated above. The decision boundary is orthogonal to the weight vector $\underline{\mathbf{w}}$ with distance b to the origin. $\underline{\mathbf{w}}^T\underline{\mathbf{x}}$ is the projection of $\underline{\mathbf{x}}$ on $\underline{\mathbf{w}}$ and b shifts the decision boundary according to the classification problem, so that $sign(\underline{\mathbf{w}}^T\underline{\mathbf{x}} - b)$ becomes negative for points on one side of the boundary and positive for the other.
+
+\subsection*{b)}
+
+
+
 \section*{8.3}
 \subsection*{a)}
 A margin can be thought of as the 'width' of the decision boundary of the linear connectionist neuron, or how close we allow the boundary line to come to the data points. The effect of increasing the margin is that the number of possible classifying lines decreases which effectively reduces the complexity of the classifier. If this can be done without affecting the training/empirical error of the classifier, it can reduce the generalization error.
