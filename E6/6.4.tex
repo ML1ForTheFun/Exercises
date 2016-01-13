@@ -1,0 +1,30 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\begin{document}
+\noindent
+Martin Lundfall, Henri Bunting, Malte Siemers
+\begin{centering}
+  \section*{Exercise sheet 06 - Machine Intelligence I}
+  \end{centering}
+\section*{6.4}
+Since the logarithm is a strictly convex function (at least for positive arguments), then \textit{Jensen's inequality} implies:
+\begin{equation}
+  D_{KL}(p||q):= \sum_{x \in X}p(x)log\frac{p(x)}{q(x)}  \geq log \sum_{x \in X}(p(x)\frac{p(x)}{q(x)}) = log(1) = 0
+\end{equation}
+If $\forall x: p(x)=q(x)$ this becomes:
+\begin{equation}
+D_{KL}(p||q):= \sum_{x \in X}p(x)log\frac{p(x)}{q(x)} = \sum_{x \in X}p(x)log(1) = 0
+\end{equation}
+If $D_{KL}(p||q) = 0$, then we get:
+\begin{equation}
+  \sum_{x \in X}p(x)log\frac{p(x)}{q(x)}=0 \implies \sum_{x \in X}(p(x)) \sum_{x \in X}log\frac{p(x)}{q(x)} = 0
+\end{equation}
+Since $p(x)$ and $q(x)$ are always positive, this implies that for all $x \in X$ we must have:
+\begin{equation*}
+  log\frac{p(x)}{q(x)} = 0 \implies \frac{p(x)}{q(x)} = 1 \implies p(x)=q(x)
+\end{equation*}
+\end{document}
+

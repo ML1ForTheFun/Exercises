@@ -1,0 +1,41 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\begin{document}
+\noindent
+Martin Lundfall, Henri Bunting, Malte Siemers, Patrik Bey
+\begin{centering}
+  \section*{Exercise sheet 09 - Machine Intelligence I}
+  \end{centering}
+\section*{9.1}
+
+Plugging in the equation to minimize and the constraints into the Karush-Kuhn-Tucker conditions we get the following expression:
+\begin{equation}
+\begin{split}
+- w = 
+\end{split}
+\end{equation}
+shdhdsa
+\begin{equation}
+\begin{split}
+-\frac{1}{2} \sum_{\alpha=1}^p\sum_{\beta=1}^p\lambda_{\beta}y_T^{(\alpha)}y_T^{(\beta)}\left( x^{(\alpha)} \right ) ^T x^{(\beta)}+p = \\
+- \mu_1 p + \mu_2 \frac{1-C}{p} + \lambda_3 \sum_{\alpha=1}^p y_T^{(\alpha)}
+\end{split}
+\end{equation}
+
+\end{document}
+
+The error function $\varphi_\alpha$ is given by:
+\begin{equation}
+\varphi_\alpha = \frac{1}{2} \left ( 1 -  y_T^{(\alpha)} sign(w^Tx^{(\alpha)}+b) \right )
+\end{equation}
+We will soon derive this with respect to $w$, attaining:
+\begin{equation}
+\frac{\delta \varphi_\alpha}{\delta w} = 
+\end{equation}
+
+
+- \left ( w +  \frac{C}{p}\sum_{\alpha=1}^p \frac{\delta \varphi_{\alpha}}{\delta w} \right ) = \\ 
+\lambda_1 \left ( (\frac{\delta \varphi_{\alpha}}{\delta w} - 1) - y_T^{(\alpha)} x^{(\alpha)}  \right ) - \lambda_2 \frac{\delta \varphi_{\alpha}}{\delta w}
