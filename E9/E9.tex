@@ -10,32 +10,33 @@ Martin Lundfall, Henri Bunting, Malte Siemers, Patrik Bey
   \section*{Exercise sheet 09 - Machine Intelligence I}
   \end{centering}
 \section*{9.1}
-
-Plugging in the equation to minimize and the constraints into the Karush-Kuhn-Tucker conditions we get the following expression:
+The primal problem for C-SVMs is solved by using the Karush-Kuhn-Tucker conditions, a generalization of Lagrange multipliers. We aim to minimize the following equation:
 \begin{equation}
-\begin{split}
-- w = 
-\end{split}
+  L_{(w, b, \{\lambda_\alpha\})} = f_0(w, b) + \sum_{\alpha=1}^p \lambda_\alpha f_\alpha(x)
 \end{equation}
-shdhdsa
+Where $f_0$ is the function to be minimized, in our case:
 \begin{equation}
-\begin{split}
--\frac{1}{2} \sum_{\alpha=1}^p\sum_{\beta=1}^p\lambda_{\beta}y_T^{(\alpha)}y_T^{(\beta)}\left( x^{(\alpha)} \right ) ^T x^{(\beta)}+p = \\
-- \mu_1 p + \mu_2 \frac{1-C}{p} + \lambda_3 \sum_{\alpha=1}^p y_T^{(\alpha)}
-\end{split}
+f(w,b) = \frac{||w||^2}{2} + \frac{C}{p}\sum_{\alpha=1}^p \varphi_\alpha
 \end{equation}
+ and $f_k$ are the inequality constraints, in our case:
+\begin{equation}
+f_\alpha(w, b) = (1 - \varphi_\alpha) - y_T (w^Tx + b)
+\end{equation}
+\begin{equation}
+f_\alpha(w, b) = - \varphi_\alpha
+\end{equation}
+We minimize the KKT equation first with respect to $w$. Note that the slack variables $\varphi_\alpha$ are independent of $w$. This results in:
+\begin{equation}
+w = \sum_{\alpha=1}^p \lambda_\alpha y_T^{(\alpha)}x^{(\alpha)}
+\end{equation}
+Then minimizing with respect to $b$ we get the following constraint on $\lambda_\alpha$:
+\begin{equation}
+0 = \sum_{\alpha=1}^p \lambda_\alpha y_T^{(\alpha)}
+\end{equation}
+Putting these results back into the KKT equation, we attain:
+\begin{equation}
+L_{(x_k, \{\lambda_k\})} = \frac{1}{2} \sum _{\alpha, \beta=1}^p\lambda_\alpha \lambda_\beta y_T^{(\alpha)}y_T^{(\beta)}(x^{(\alpha)})^Tx^{(\beta)}+\sum_{\alpha=1}^p\lambda_\alpha
+\end{equation}
+We clearly see that minimizing this equation corresponds to maximizing the expression given in the exercise. The upper bound of the $\lambda_\alpha$ variables is given by the duality of the problem.
 
 \end{document}
-
-The error function $\varphi_\alpha$ is given by:
-\begin{equation}
-\varphi_\alpha = \frac{1}{2} \left ( 1 -  y_T^{(\alpha)} sign(w^Tx^{(\alpha)}+b) \right )
-\end{equation}
-We will soon derive this with respect to $w$, attaining:
-\begin{equation}
-\frac{\delta \varphi_\alpha}{\delta w} = 
-\end{equation}
-
-
-- \left ( w +  \frac{C}{p}\sum_{\alpha=1}^p \frac{\delta \varphi_{\alpha}}{\delta w} \right ) = \\ 
-\lambda_1 \left ( (\frac{\delta \varphi_{\alpha}}{\delta w} - 1) - y_T^{(\alpha)} x^{(\alpha)}  \right ) - \lambda_2 \frac{\delta \varphi_{\alpha}}{\delta w}
