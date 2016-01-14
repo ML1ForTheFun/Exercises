@@ -1,4 +1,4 @@
-Enter file contents here%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
 %
 %   Machine Intelligence I: excercise 9.3
 %
@@ -10,8 +10,8 @@ Enter file contents here%%%%%%%%%%%%%%%%
 
 clear all
 
-rmpath
-addpath 'F:\Studies\WiSe1516\Machine Intelligence I\excercise_09\libsvm-3.21\'
+%rmpath
+%addpath 'F:\Studies\WiSe1516\Machine Intelligence I\excercise_09\libsvm-3.21\'
 
 %%create training set
 for i = 1:80
@@ -44,8 +44,8 @@ dat_test = dat_test(ind,:);
 clear ind
 
 %% parameter initialization / grid definition
-C = [2^-5,2^-3,2^-1,2,2^3,2^5,2^7,2^9,2^11,2^13,2^15];
-gamma = [2^3,2^-1,2^-5];%[2^-15,2^-13,2^-11,2^-9,2^-7,2^-5,2^-3,2^-1,2,2^3];
+C = [2^3,2^5,2^7];
+gamma = [2,2^-1,2^-3];
 index = 1:length(dat);
 
 %% LOO - cross validation grid search for parameter optimization
@@ -62,7 +62,6 @@ for g = 1:length(gamma)
             model = svmtrain(train,label(CVind),'ShowPlot',false,'kernel_function','rbf','boxconstraint',C(c),'rbf_sigma',gamma(g),'boxconstraint',C(c));
             
             SVM(i) = svmclassify(model,dat(i,1:2),'Showplot',false);
-           ((c-1)*100+i)/3000
         end
         perf(c,g) = length(find(SVM'~=label))/length(label);
         
