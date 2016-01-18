@@ -26,17 +26,19 @@ The probability of a burglary not having occured is:
   \\
   =  \frac{P(A=t |E=t, B=f)P(B=f)P(E=t)}{P(A=t|E=t)P(E=t)}= \\
   \\
-  =  \frac{P(A=t| B=f, E=t)P(B=f)}{P(A=t|B=t,E=t)P(B=t)+P(A=t|B=f,E=t)P(B=f)}
+  =  \frac{P(A=t| B=f, E=t)P(B=f)}{P(A=t|B=t,E=t)P(B=t)+P(A=t|B=f,E=t)P(B=f)} = \frac{0.41*0.99}{0.98*0.01+0.41+0.99}
   \end{split}
 \end{equation*}
 The probability of a burglary having occured is:
 \begin{equation*}
   \begin{split}
-  P(B=t|A=t,E=t)  = \frac{P(E=t, A=t | B=t)P(B=t)}{P(A=t,E=t)}=\\
+  P(B=t|A=t,E=t)  = \frac{P(E=t, A=t | B=t)P(B=t)}{P(A=t,E=t)}= \\
   \\
   =  \frac{P(A=t |E=t, B=t)P(B=t)P(E=t)}{P(A=t|E=t)P(E=t)}= \\
   \\
-  =  \frac{P(A=t| B=t, E=t)P(B=t)}{P(A=t|B=t,E=t)P(B=t)+P(A=t|B=f,E=t)P(B=f)}
+  =  \frac{P(A=t| B=t, E=t)P(B=t)}{P(A=t|B=t,E=t)P(B=t)+P(A=t|B=f,E=t)P(B=f)} \\
+  \frac{0.98*0.01}{0.98*0.01+0.41*0.99}=0.02357...
   \end{split}
-  \end{equation*}
+\end{equation*}
+We see that if there was a radio broadcast while the alarm went off, a burglary probably hasn't occured. This seems to indicate that keeping the radio on reduces the risk for burglaries, but this is a faulty assumtion to make, since the two probabilities are independent.
 \end{document}
