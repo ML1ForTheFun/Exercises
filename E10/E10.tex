@@ -1,0 +1,42 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\begin{document}
+\noindent
+Martin Lundfall, Henri Bunting, Malte Siemers, Patrik Bey
+\begin{centering}
+  \section*{Exercise sheet 10 - Machine Intelligence I}
+  \end{centering}
+\section*{10.3}
+\subsection*{a)}
+Representing the probabilities as a DAG, we see the following dependencies:
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.4\textwidth]{graph}
+    \caption{DAG illustrating probability dependencies}
+  \end{figure}
+\subsection*{b)}
+Explaining away the probabilities given, we consider the case where you're alarm has gone off while there was a radio broadcast. What are the respective probabilities of a burglary having occured?\\
+The probability of a burglary not having occured is:
+\begin{equation*}
+  \begin{split}
+  P(B=f|A=t,E=t)  = \frac{P(E=t, A=t | B=f)P(B=f)}{P(A=t,E=t)}=\\
+  \\
+  =  \frac{P(A=t |E=t, B=f)P(B=f)P(E=t)}{P(A=t|E=t)P(E=t)}= \\
+  \\
+  =  \frac{P(A=t| B=f, E=t)P(B=f)}{P(A=t|B=t,E=t)P(B=t)+P(A=t|B=f,E=t)P(B=f)}
+  \end{split}
+\end{equation*}
+The probability of a burglary having occured is:
+\begin{equation*}
+  \begin{split}
+  P(B=t|A=t,E=t)  = \frac{P(E=t, A=t | B=t)P(B=t)}{P(A=t,E=t)}=\\
+  \\
+  =  \frac{P(A=t |E=t, B=t)P(B=t)P(E=t)}{P(A=t|E=t)P(E=t)}= \\
+  \\
+  =  \frac{P(A=t| B=t, E=t)P(B=t)}{P(A=t|B=t,E=t)P(B=t)+P(A=t|B=f,E=t)P(B=f)}
+  \end{split}
+  \end{equation*}
+\end{document}
