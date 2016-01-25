@@ -1,0 +1,24 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\begin{document}
+\noindent
+Martin Lundfall, Henri Bunting, Malte Siemers, Patrik Bey
+\begin{centering}
+  \section*{Exercise sheet 11 - Machine Intelligence I}
+  \end{centering}
+\subsection*{11.1 - Cliques}
+In the given graph, we have 10 vertices and 17 edges. These make up 10 1-vertex cliques and 17 2-vertex cliques. We also identify the 3-vertex cliques consisting of vertices\\ $\{A,C,H\},\{A, C, G\},\{B, C, D\}, \{B, C, G\}, \{C, H, I\}, \{G, H, I\}$. There is also one 4-vertex clique, among the vertices $\{C, G, H, I\}$.
+\subsection*{11.2 - Cliques and Separators}
+\subsection*{(a)}
+The moralized graph of the DAG is an undirected graph where additional connections are added between nodes that share a child in the DAG.
+\begin{figure}[h]
+  \caption{Moralization of the DAG}
+  \centering
+  \includegraphics[width=.7\textwidth]{moral}
+\end{figure}
+\subsection*{(b)}
+The 1-vertex cliques are all the vertices of the moral graph, the 2-vertex cliques are formed by all the vertex pairs that are directly connected, and the only 3-vertex in the graph consists of $\{A, B C\}$. The separators of the graph are $\{C\}, \{A, C\}, \{B, C\}, \{C, D\}, \{C, E\}, \{A, B, C\}, \{A, C, E\}, \{A, C, D\}, \{B, C, D\}, \{B, C, E\}$.
+\end{document}
