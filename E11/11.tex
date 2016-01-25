@@ -20,5 +20,16 @@ The moralized graph of the DAG is an undirected graph where additional connectio
   \includegraphics[width=.7\textwidth]{moral}
 \end{figure}
 \subsection*{(b)}
-The 1-vertex cliques are all the vertices of the moral graph, the 2-vertex cliques are formed by all the vertex pairs that are directly connected, and the only 3-vertex in the graph consists of $\{A, B C\}$. The separators of the graph are $\{C\}, \{A, C\}, \{B, C\}, \{C, D\}, \{C, E\}, \{A, B, C\}, \{A, C, E\}, \{A, C, D\}, \{B, C, D\}, \{B, C, E\}$.
+Generally, the 1-vertex cliques are all the vertices of the moral graph, the 2-vertex cliques are formed by all the vertex pairs that are directly connected, and the only 3-vertex in the graph consists of $\{A, B C\}$. The separators of the graph are $\{C\}, \{A, C\}, \{B, C\}, \{C, D\}, \{C, E\}, \{A, B, C\}, \{A, C, E\},$\\$ \{A, C, D\}, \{B, C, D\}, \{B, C, E\}$.
+
+The given formula works only for maximal cliques and minimal separators. We have $\{A, B, C\}, \{B, C\}, \{C, E\}$ as a maximal cliques and $\{C\}$ as minimal separator.
+\begin{equation}
+  \begin{split}
+    p(a, b, c, d, e) = p(e|c)p(d|c)p(c|a,b)p(a,b) = \\
+    \\
+    = \frac{p(e, c)p(d, e)p(a, b, c)p(a, b)}{p(c)p(a, b)} = \frac{p(a, b, c)p(e, c)p(d, c)}{p(c)}
+    \end{split}
+\end{equation}
+\subsection*{11.3 Representation of the knowledge base}
+
 \end{document}
