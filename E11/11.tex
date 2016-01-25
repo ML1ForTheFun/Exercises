@@ -27,9 +27,81 @@ The given formula works only for maximal cliques and minimal separators. We have
   \begin{split}
     p(a, b, c, d, e) = p(e|c)p(d|c)p(c|a,b)p(a,b) = \\
     \\
-    = \frac{p(e, c)p(d, e)p(a, b, c)p(a, b)}{p(c)p(a, b)} = \frac{p(a, b, c)p(e, c)p(d, c)}{p(c)}
-    \end{split}
+    = \frac{p(e, c)p(d, c)p(a, b, c)p(a, b)}{p(c)p(a, b)} = \frac{p(a, b, c)p(e, c)p(d, c)}{p(c)}
+  \end{split}
 \end{equation}
-\subsection*{11.3 Representation of the knowledge base}
+  We see that in equation above the product of the cliques is the numerator and the separator is the denominator.
 
+  \subsection*{11.3 Representation of the knowledge base}
+\subsubsection*{a)}
+\begin{verbatim}
+
+'''This is the burglary example from Exercise 10.3'''
+from bayesian.bbn import build_bbn
+
+def f_burglary(burglary):
+    if burglary is True:
+        return 0.01
+    return 0.99
+
+def f_earthquake(earthquake):
+    if earthquake is True:
+        return 0.000001
+    return 0.999999
+
+def f_radioBroadcast(earthquake, radioBroadcast):
+    table = dict()
+    table['tt'] = 1.
+    table['tf'] = 0.
+    table['ft'] = 0.
+    table['ff'] = 1.
+    key = ''
+    key = key + 't' if earthquake else key + 'f'
+    key = key + 't' if radioBroadcast else key + 'f'
+    return table[key]
+\end{verbatim}
+\newpage
+\begin{verbatim}
+def f_alarm(burglary, earthquake, alarm):
+    table = dict()
+    table['fft'] = 0.001
+    table['fff'] = 0.999
+    table['ftt'] = 0.41
+    table['ftf'] = 0.59
+    table['tft'] = 0.95
+    table['tff'] = 0.05
+    table['ttt'] = 0.98
+    table['ttf'] = 0.02
+    key = ''
+    key = key + 't' if burglary else key + 'f'
+    key = key + 't' if earthquake else key + 'f'
+    key = key + 't' if alarm else key + 'f'
+    return table[key]
+
+if __name__ == '__main__':
+    g = build_bbn(
+        f_burglary,
+        f_earthquake,
+        f_radioBroadcast,
+        f_alarm)
+    g.q()
+\end{verbatim}
+\subsubsection*{b)}
+The code presented above creates the following output when run:
+\begin{verbatim}
++----------------+-------+----------+
+| Node           | Value | Marginal |
++----------------+-------+----------+
+| alarm          | False | 0.989510 |
+| alarm          | True  | 0.010490 |
+| burglary       | False | 0.990000 |
+| burglary       | True  | 0.010000 |
+| earthquake     | False | 0.999999 |
+| earthquake     | True  | 0.000001 |
+| radioBroadcast | False | 0.999999 |
+| radioBroadcast | True  | 0.000001 |
++----------------+-------+----------+
+\end{verbatim}
+Here we can easily see the marginal probabilities $p(A = t) = 0.989510,$ \\$p(B = t) = 0.99, p(E = t) = 0.000001, p(R = t) = 0.000001$.
+This bayesian belief network uses a datastructure comprising four functions, one for each node in the DAG. For the independent events of a burglary and an earthquake occuring, we simply return the probability, whereas for the other nodes a probility is chosen from a table of probabilities depending on the input. When the \textit{Pythonic Bayesian Belief Network Framework} is built, it computes the marginal probabilities.
 \end{document}
