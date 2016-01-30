@@ -42,24 +42,31 @@ We clearly see that minimizing this equation corresponds to maximizing the expre
 \section*{9.4 - Parameter Optimization}
 \subsection*{(a)}
 Following the procedure for grid search as described in the guide we performed leave-one-out cross validation (LOOCV) on the training data using the following parameter range:\\
-$ \gamma = [2^{3},2^{2},2,2^{-1},2^{-2},2^{-3}] $, $ C = [2^{3},2^{4},2^{5},2^{6},2^{7}]$
+$ \gamma = [2^{3},2,2^{-1},2^{-3},2^{-5},2^{-7},2^{-9}] $, $ C = [2^{-5},2^{-3},2^{-1},2,2^{3},2^{5},2^{7}]$
+
+\begin{figure}[h]
+	\includegraphics[width=\linewidth]{train_dat_model.jpg}
+	\caption{Example SVM model for the given training data}
+\end{figure}
 
 \subsection*{(b)}
 The following contour plot shows the classification performance for LOOCV on the training data with the parameter grid as defined in \textbf{(a)}.
 
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{perf_contour.jpg}
+	\caption{Contour plot for the given LOOCV performances for each combination of $C$ and $\gamma$}
 \end{figure}
 
 \newpage
 \subsection*{(c)}
 The optimal parameter values for $C$ and $\gamma$ given the LOOCV on the training data are
-$C = 2^{4}, \gamma = 2^{-3}$ for an overall LOOCV performance of $65\%$.
+$C = 2^{3}, \gamma = 2^{-9}$ for an overall LOOCV performance of $97.5\%$.
 
 \subsection*{(d)}
 The following plot shows the test data and the decision boundary for a trained SVM given the optimal parameter as given in \textbf{(c)}.
 \begin{figure}[h]
 	\includegraphics[width=\linewidth]{test_dat_model.jpg}
+	\caption{Classification of test data based on optimal parameter from grid search on training data}
 \end{figure}
 
 \subsection*{(e)}
