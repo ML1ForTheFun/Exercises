@@ -42,5 +42,40 @@ The separator potential is initialized to 1. The clique potential of C2 is: $P(E
 	\includegraphics[width=.2\textwidth]{junction}
 \end{figure}
 \subsubsection*{c)}
-Then we introduce the evidence. In this case, the alarm has gone off and the radio broadcasts an earthquake warning.
+The following marginals were calculated with the bayesian package for python we also used in assignment 11:
+	\begin{verbatim}
+	+----------------+-------+----------+
+	| Node           | Value | Marginal |
+	+----------------+-------+----------+
+	| alarm          | False | 0.989510 |
+	| alarm          | True  | 0.010490 |
+	| burglary       | False | 0.990000 |
+	| burglary       | True  | 0.010000 |
+	| earthquake     | False | 0.999999 |
+	| earthquake     | True  | 0.000001 |
+	| radioBroadcast | False | 0.999999 |
+	| radioBroadcast | True  | 0.000001 |
+	+----------------+-------+----------+
+	\end{verbatim}
+\subsection*{d)}
+The probability that a burglary has happend when the alarm turns on is
+\begin{equation*}
+\begin{split}
+  P(B=t|A=t) = \frac{P(A=t|B=t)P(B=t)}{P(A=t)}=\\
+  \frac{(P(A=t|B=t,E=t)P(E=t)+P(A=t|B=t,E=f)P(E=f))P(B=t)}{P(A=t)}=\\
+  \frac{(0.98*10^{-6}+0.95*0.999999)*0.01}{0.010490}=0.905624...
+  \end{split}
+\end{equation*}
+The influence of hearing the radio while an alarm goes off is the followning:
+\begin{equation*}
+  \begin{split}
+  P(B=t|A=t,E=t)  = \frac{P(E=t, A=t | B=t)P(B=t)}{P(A=t,E=t)}= \\
+  \\
+  =  \frac{P(A=t |E=t, B=t)P(B=t)P(E=t)}{P(A=t|E=t)P(E=t)}= \\
+  \\
+  =  \frac{P(A=t| B=t, E=t)P(B=t)}{P(A=t|B=t,E=t)P(B=t)+P(A=t|B=f,E=t)P(B=f)} \\
+  = \frac{0.98*0.01}{0.98*0.01+0.41*0.99}=0.02357...
+  \end{split}
+\end{equation*}
+The probability, that a burglary had happened when the alarm goes off while one heard about an earthquake in the radio is drastically smaller than without the information on the earthquake.
 \end{document}
