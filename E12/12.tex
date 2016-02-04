@@ -66,7 +66,7 @@ The probability that a burglary has happend when the alarm turns on is
   \frac{(0.98*10^{-6}+0.95*0.999999)*0.01}{0.010490}=0.905624...
   \end{split}
 \end{equation*}
-The influence of hearing the radio while an alarm goes off is the followning:
+The influence of hearing the radio while an alarm goes off is the following:
 \begin{equation*}
   \begin{split}
   P(B=t|A=t,E=t)  = \frac{P(E=t, A=t | B=t)P(B=t)}{P(A=t,E=t)}= \\
@@ -78,4 +78,30 @@ The influence of hearing the radio while an alarm goes off is the followning:
   \end{split}
 \end{equation*}
 The probability, that a burglary had happened when the alarm goes off while one heard about an earthquake in the radio is drastically smaller than without the information on the earthquake.
+
+\subsection*{12.2 - Bayesian Inference}
+  \subsection*{a}
+Generative model\\
+Generative models diverge from strict assignment of labels to allow for probabilistic assignment.  It represents a hypothesis about the causes.\\
+We can say that some latent variable, for example y*, is the driving factor behind our label assignment function, y.\\
+An example of a generative model is additive noise.  We can model our y as:\\
+\begin{equation*}
+y = y* + \eta
+\end{equation*}
+Here, y is modeled by the latent $y* + \eta$ for some noise function $\eta$ \\\\
+Prior distribution\\
+The prior distribution represents some initial beliefs of values for our parameters.  It is modeled by: $P(\theta)$\\\\
+Likelihood function\\
+$L(\theta)$\\
+In Maximum Likelihood estimation, we take a subset of the observations and maximize this to give us a $\theta$ which we then use to make predictions for future features.  It is a product of the probabilities.\\\\
+Posterior distribution\\
+After observing data, we update our beliefs.\\
+$(P(x1, ..., xn | \theta) * P(\theta)) / P(x1, ..., xn)$\\\\
+Predictive distribution\\
+How we can predict new data.\\
+$P(x^{n+1} | x1, ..., xn) = \int (P(x^{n+1} | \theta) * P(\theta | x1, ... , xn)d\theta$\\
+While this is a major advantage for Bayesians, it is also computationally expensive.\\
+
+  \subsection*{b}In the Bayesian approach, we update the knowledge base after every new piece of data, so we do not encounter the problem of over-/under-fitting.
+
 \end{document}
