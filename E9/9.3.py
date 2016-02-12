@@ -27,7 +27,7 @@ clf.fit(trainingdata[:,0:2], trainingdata[:, 2:3].reshape(80,))
 # ------- 9.3.b Classify with 0/1 loss function and report classification error -------
 errors = (clf.predict(testdata[:,0:2]) != testdata[:, 2:3].reshape(80,))*1
 print( errors )
-print(sum(errors) / 80)
+print(sum(errors) / 80.)
 
 
 
