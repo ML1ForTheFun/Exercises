@@ -54,11 +54,15 @@ The plot of our classification with decision boundaries and false positives and 
 \section*{9.4 - Parameter Optimization}
 \subsection*{(a)}
 Following the procedure for grid search as described in the guide we performed leave-one-out cross validation (LOOCV) on the training data using the following parameter range:\\
-$ \gamma = [2,2^{-1},2^{-3},2^{-5},2^{-7},2^{-9},2^{-13},2^{-15}] $, $ C = [2^{-5},2^{-3},2^{-1},2,2^{3},2^{5},2^{7},2^9]$
-
+$ \gamma = [2,2^{-1},2^{-3},2^{-5},2^{-7},2^{-9},2^{-13},2^{-15}] $, $ C = [2^{-5},2^{-3},2^{-1},2,2^{3},2^{5},2^{7},2^9]$\\
+After that we refined the grid to:\\
+$C = [2^{1.5},2^{1.75},2^2,2^{2.25},2^{2.5},2^{2.75},2^{3},2^{3.25},2^{3.5},2^{3.75},2^4,2^{4.25},2^{4.5}]$\\
+$\gamma = [2^{-.5},2^{-.25},2^0,2^{.25},2^{.5},2^{.75},2^1,2^{1.25},2^{1.5},2^{1.75},2^2,2^{2.25},2^{2.5}]$\\
+The parameter we obtained from the second grid search were $\gamma=0.8408$ and $C=16$. On the following pages the cross validation performance and the mean training classification for those parameters are shown, as well as the test data with the classification boundaries.
 \subsection*{(c)}
-
+The classification error was then 16.25\% and the CSVM used 42 supporting vectors.
 \subsection*{(e)}
+The classification error is the same as in our results with the standard parameters from the python package. The python package had to use 58 supporting vectors. Visually, the cross validated results show as well as the standard parameter results no signs of overfitting. We couldnt find a set of parameters, that significantly improved the results.
 
 \begin{figure}[h]
 	\includegraphics[angle=270,width=\textwidth]{94b_1.png}
